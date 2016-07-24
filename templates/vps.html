@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <title>{% block seo_title %}{% endblock %}</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="" rel="stylesheet">
+    <script src=""></script>
+    <link rel="shortcut icon" href="">
+
+</head>
+<body>
+<a href="/">首页</a>
+<a href="new">新开机器</a>
+<a href="vps">浏览机器</a>
+{#<a href="operate">操作机器</a>#}
+<br>
+<div>
+    所有机器如下：
+{% if vm_s.count >= 8 %}
+    <div>暂时只支持8台机器</div>
+{% endif %}
+    {% for a_vm in vm_s %}
+    <form action="operate" method="post">
+    {% csrf_token %}
+    <br>
+    <div>
+        <div>
+            <br>
+            --------------------------------------
+            <div>vps 名称：{{ a_vm.name }}</div>
+            <div>vps ID：{{ a_vm.vm_id }}</div>
+            <div>vps 类型：{{ a_vm.type_name }}</div>
+            <div>vps 系统名称：{{ a_vm.os_name }}</div>
+            <div>vps 路径：{{ a_vm.path_name }}</div>
+
+{#            <div>vps 网络类型：{{ a_vm.net_type }}</div>#}
+{#            <div>vps 内网IP：{{ a_vm.lan_ip }}</div>#}
+{#            <div>vps 外网IP：{{ a_vm.eth_ip }}</div>#}
+{#            <div>vps 网关：{{ a_vm.gate_way }}</div>#}
+{#            <div>vps 掩码：{{ a_vm.network_mask }}</div>#}
+{#            <div>vps 创建时间：{{ a_vm.created_at }}</div>#}
+{#            <div>vps 停止时间：{{ a_vm.stop_at }}</div>#}
+{#            <div>vps adsl账号：{{ a_vm.adsl }}</div>#}
+{#            <div>vps adsl密码：{{ a_vm.adsl_pwd }}</div>#}
+            <div>
+                <input type="text" value="{{ a_vm.id }}" name="a_vm_id" id="a_vm_id" hidden>
+                <input type="submit" value="点击浏览">
+            </div>
+
+            --------------------------------------
+            <br>
+        </div>
+    </div>
+    </form>
+    {% endfor %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <title>{% block seo_title %}{% endblock %}</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="" rel="stylesheet">
+    <script src=""></script>
+    <link rel="shortcut icon" href="">
+
+</head>
+<body>
+<a href="/">首页</a>
+<a href="new">新开机器</a>
+<a href="vps">浏览机器</a>
+{#<a href="operate">操作机器</a>#}
+<br>
+
+<div>
+    <form action="operate" method="post">
+    {% csrf_token %}
+    <br>
+    <div>
+{#        {% for a_vm in vm_s %}#}
+        <div>
+            <br>
+            --------------------------------------
+            <div>vps 名称：{{ a_vm.name }}</div>
+            <div>vps ID：{{ a_vm.vm_id }}</div>
+            <div>vps 类型：{{ a_vm.type_name }}</div>
+            <div>vps 系统名称：{{ a_vm.os_name }}</div>
+            <div>vps 路径：{{ a_vm.os_name }}</div>
+
+            <div>vps 网络类型：{{ a_vm.net_type }}</div>
+            <div>vps 内网IP：{{ a_vm.lan_ip }}</div>
+            <div>vps 外网IP：{{ a_vm.eth_ip }}</div>
+            <div>vps 网关：{{ a_vm.gate_way }}</div>
+            <div>vps 掩码：{{ a_vm.network_mask }}</div>
+            <div>vps 创建时间：{{ a_vm.created_at }}</div>
+            <div>vps 停止时间：{{ a_vm.stop_at }}</div>
+            <div>vps adsl账号：{{ a_vm.adsl }}</div>
+            <div>vps adsl密码：{{ a_vm.adsl_pwd }}</div>
+            <div><input type="text" name="a_vm_id" id="a_vm_id" value="{{ a_vm.id }}" hidden/></div>
+            <br>
+            <div>远程登陆 vps：{{ a_vm.lan_ip }}</div>
+            <div>Windows 类型的vps 请用RDP, 端口号为:3389</div>
+            <div>Linux  类型的vps 请用ssh, 端口号为:22</div>
+            <div>vps 账户名：{{ a_vm.login_name }}</div>
+            <div>vps 密码：{{ a_vm.login_password }}</div>
+            <br>
+            <div>当前状态: 暂缺</div>
+            <br>
+            <div>执行操作:
+                <input type="submit" name="operate" id="operate" value="start"/>
+                <input type="submit" name="operate" id="operate" value="stop"/>
+                <input type="submit" name="operate" id="operate" value="reset"/>
+            </div>
+
+            --------------------------------------
+            <br>
+        </div>
+{#        {% endfor %}#}
+    </div>
+    </form>
+</div>
+</body>
+</html>

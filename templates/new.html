@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<a href="/">首页</a>
+<a href="new">新开机器</a>
+<a href="vps">浏览机器</a>
+{#<a href="operate">操作机器</a>#}
+<br>
+<div>
+
+    <form action="new" method="post">
+    {% csrf_token %}
+    <select name="vm_type_id" id="vm_type_id">
+    <br>
+    {% for a_vm_type in vm_type_s %}
+        <option value="{{ a_vm_type.id }}">资源名字：{{ a_vm_type.name }}</option>
+    {% endfor %}
+    </select>
+        <div><input type="text" name="operate" id="operate" value="new" hidden/></div>
+{#        <div><input type="text" name="vm_type_id" id="vm_type_id" value="{{ a_vm_type.id }}" hidden/></div>#}
+        <div><input type="submit" name="" value="新开机器"/></div>
+    </form>
+
+</div>
+</body>
+</html>
